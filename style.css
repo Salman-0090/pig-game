@@ -20,28 +20,38 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow-x: hidden;
 }
 
-/* LAYOUT */
 main {
-  position: relative;
-  width: 100rem;
-  height: 60rem;
-  background-color: rgba(255, 255, 255, 0.35);
+  width: 100%;
+
+  max-width: 100rem;
+  min-height: 90vh;
+
   backdrop-filter: blur(200px);
   filter: blur();
   box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.25);
   border-radius: 9px;
+  overflow: auto;
+}
+
+/* LAYOUT */
+.player-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  background-color: rgba(255, 255, 255, 0.35);
+  border-radius: 10px;
   overflow: hidden;
-  display: flex;
 }
 
 .player {
-  flex: 50%;
   padding: 9rem;
   display: flex;
   flex-direction: column;
+  min-height: 80vh;
   align-items: center;
+  justify-content: center;
   transition: all 0.75s;
 }
 
@@ -82,7 +92,7 @@ main {
   opacity: 0.8;
   border-radius: 9px;
   color: #fff;
-  width: 65%;
+  max-width: 65%;
   padding: 2rem;
   text-align: center;
   transition: all 0.75s;
@@ -100,10 +110,8 @@ main {
 }
 
 /* ABSOLUTE POSITIONED ELEMENTS */
-.btn {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+.btn,
+.btn--rules {
   color: #444;
   background: none;
   border: none;
@@ -118,7 +126,7 @@ main {
   background-color: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(10px);
 
-  padding: 0.7rem 2.5rem;
+  padding: 0.5rem 2rem;
   border-radius: 50rem;
   box-shadow: 0 1.75rem 3.5rem rgba(0, 0, 0, 0.1);
 }
@@ -129,19 +137,22 @@ main {
   margin-right: 0.7rem;
 }
 
-.btn--new {
-  top: 4rem;
-}
-.btn--roll {
-  top: 39.3rem;
-}
-.btn--hold {
-  top: 46.1rem;
+.btn-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  text-align: center;
 }
 
 .btn:active {
-  transform: translate(-50%, 3px);
+  transform: translateY(-3px);
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+}
+
+.btn:hover {
+  background-color: rgba(255, 255, 255, 0.558);
 }
 
 .btn:focus {
@@ -168,4 +179,50 @@ main {
 
 .hidden {
   display: none;
+}
+
+@media (max-width: 600px) {
+  .player {
+    display: none;
+    padding: 3rem;
+  }
+
+  .player--active {
+    display: flex;
+  }
+
+  .player--active.player--0 {
+    background-color: rgba(255, 255, 255, 0.4);
+  }
+  .player--active.player--1 {
+    background-color: rgba(255, 255, 255, 0.264);
+  }
+
+  .current-score {
+    font-size: 2rem;
+  }
+
+  .name {
+    font-size: 2.4rem;
+  }
+
+  .btn {
+    font-size: 1.2rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .btn::first-letter {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .btn {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .btn::first-letter {
+    font-size: 1.6rem;
+  }
 }
