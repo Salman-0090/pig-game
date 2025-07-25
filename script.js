@@ -18,14 +18,31 @@ const modalOverlay = document.querySelector(".modal-overlay");
 const closeModalBtn = document.querySelector(".btn--close-modal");
 const rulesBtn = document.querySelector(".btn--rules"); // You need a "Show Rules" button
 const playerContainer = document.querySelector(".player-container");
+function btnAbility(boolean) {
+  btnHold.disabled = boolean;
+  btnNew.disabled = boolean;
+  btnRoll.disabled = boolean;
+}
+
 rulesBtn.addEventListener("click", function () {
   modalOverlay.style.display = "block";
   playerContainer.classList.add("blur");
+  btnAbility(true);
 });
 
 closeModalBtn.addEventListener("click", function () {
   modalOverlay.style.display = "none";
   playerContainer.classList.remove("blur");
+  btnAbility(false);
+});
+
+document.addEventListener("keydown", function (e) {
+  e.preventDefault();
+  if (e.key === "Escape") {
+    modalOverlay.style.display = "none";
+    playerContainer.classList.remove("blur");
+    btnAbility(false);
+  }
 });
 
 // Optional: close when clicking outside modal
