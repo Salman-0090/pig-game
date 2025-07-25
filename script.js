@@ -12,6 +12,28 @@ const diceEl = document.querySelector(".dice");
 const btnNew = document.querySelector(".btn--new");
 const btnRoll = document.querySelector(".btn--roll");
 const btnHold = document.querySelector(".btn--hold");
+const modal = document.querySelector(".modal");
+
+const modalOverlay = document.querySelector(".modal-overlay");
+const closeModalBtn = document.querySelector(".btn--close-modal");
+const rulesBtn = document.querySelector(".btn--rules"); // You need a "Show Rules" button
+const playerContainer = document.querySelector(".player-container");
+rulesBtn.addEventListener("click", function () {
+  modalOverlay.style.display = "block";
+  playerContainer.classList.add("blur");
+});
+
+closeModalBtn.addEventListener("click", function () {
+  modalOverlay.style.display = "none";
+  playerContainer.classList.remove("blur");
+});
+
+// Optional: close when clicking outside modal
+modalOverlay.addEventListener("click", function (e) {
+  if (e.target === modalOverlay) {
+    modalOverlay.style.display = "none";
+  }
+});
 
 let scores, currentScore, activePlayer, playing;
 
