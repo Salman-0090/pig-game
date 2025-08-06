@@ -265,6 +265,10 @@ main {
   .btn::first-letter {
     font-size: 2rem;
   }
+
+  .dice {
+    top: 25rem; /* Push it lower on small screens */
+  }
 }
 
 @media (max-width: 400px) {
@@ -275,6 +279,11 @@ main {
 
   .btn::first-letter {
     font-size: 1.6rem;
+  }
+
+  .dice {
+    top: 28rem;
+    height: 8rem;
   }
 }
 
